@@ -18,7 +18,7 @@ const App = () => {
   const [problem, setProblem] = useState(generateProblem());
   const [score, setScore] = useState({ correct: 0, incorrect: 0 });
   const [showResult, setShowResult] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(120); // 2 Minuten = 120 Sekunden
+  const [timeLeft, setTimeLeft] = useState(30); // 2 Minuten = 120 Sekunden
   const [gameOver, setGameOver] = useState(false);
   const [wrongAnswers, setWrongAnswers] = useState([]);
 
