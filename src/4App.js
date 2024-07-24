@@ -20,7 +20,6 @@ const App = () => {
   const [showResult, setShowResult] = useState(null);
   const [timeLeft, setTimeLeft] = useState(120); // 2 Minuten = 120 Sekunden
   const [gameOver, setGameOver] = useState(false);
-  const [wrongAnswers, setWrongAnswers] = useState([]);
 
   useEffect(() => {
     if (timeLeft > 0) {
@@ -45,7 +44,6 @@ const App = () => {
       setShowResult('Richtig!');
     } else {
       setScore((prevScore) => ({ ...prevScore, incorrect: prevScore.incorrect + 1 }));
-      setWrongAnswers(prevWrongAnswers => [...prevWrongAnswers, `${problem.num1} + ${problem.num2} = ${problem.correctAnswer}`]);
       setShowResult(`Falsch! ${problem.num1} + ${problem.num2} = ${problem.correctAnswer}`);
     }
   };
@@ -55,7 +53,6 @@ const App = () => {
     setTimeLeft(120);
     setGameOver(false);
     setShowResult(null);
-    setWrongAnswers([]);
   };
 
   return (
@@ -68,17 +65,7 @@ const App = () => {
           </div>
           <div className="answers">
             {problem.answers.map((answer, index) => (
-              <button
-                key={index}
-                onClick={() => checkAnswer(answer)}
-                disabled={gameOver}
-                style={{
-                  fontSize: '24px',
-                  padding: '20px',
-                  margin: '10px',
-                  minWidth: '100px',
-                }}
-              >
+              <button key={index} onClick={() => checkAnswer(answer)} disabled={gameOver}>
                 {answer}
               </button>
             ))}
@@ -97,16 +84,6 @@ const App = () => {
           <h2>Spiel vorbei!</h2>
           <p>Richtige Antworten: {score.correct}</p>
           <p>Falsche Antworten: {score.incorrect}</p>
-          {wrongAnswers.length > 0 && (
-            <div className="wrong-answers">
-              <h3>Falsche Aufgaben:</h3>
-              <ul>
-                {wrongAnswers.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
           <button onClick={resetGame}>Nochmals spielen</button>
         </div>
       )}
