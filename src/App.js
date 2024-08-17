@@ -52,7 +52,7 @@ const App = () => {
 
   const resetGame = () => {
     setScore({ correct: 0, incorrect: 0 });
-    setTimeLeft(30);
+    setTimeLeft(300);
     setGameOver(false);
     setShowResult(null);
     setWrongAnswers([]);
